@@ -1,27 +1,32 @@
 <script>
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { navigationMethod } from '$lib/stores/settings'
 </script>
 
-<div class="btm-nav">
-	<button on:click={() => goto('/app/')} class:active={$page.url.pathname === '/app'}>
-		<div>🏠</div>
-		<span class="btm-nav-label">Beranda</span>
-	</button>
-	<button
-		on:click={() => goto('/app/jelajah')}
-		class:active={$page.url.pathname === '/app/jelajah'}>
-		<div>🔍</div>
-		<span class="btm-nav-label">Jelajah</span>
-	</button>
-	<button
-		on:click={() => goto('/app/notifikasi')}
-		class:active={$page.url.pathname === '/app/notifikasi'}>
-		<div>🔔</div>
-		<span class="btm-nav-label">Notifikasi</span>
-	</button>
-	<button on:click={() => goto('/app/pesan')} class:active={$page.url.pathname === '/app/pesan'}>
-		<div>📩</div>
-		<span class="btm-nav-label">Pesan</span>
-	</button>
-</div>
+{#if ($navigationMethod == 'bottom-navbar')}
+	<div class="btm-nav">
+		<button on:click={() => goto('/app/')} class:active={$page.url.pathname === '/app'}>
+			<div>🏠</div>
+			<span class="btm-nav-label">Home</span>
+		</button>
+		<button
+			on:click={() => goto('/app/search')}
+			class:active={$page.url.pathname === '/app/search'}>
+			<div>🔍</div>
+			<span class="btm-nav-label">Search</span>
+		</button>
+		<button
+			on:click={() => goto('/app/notifications')}
+			class:active={$page.url.pathname === '/app/notifications'}>
+			<div>🔔</div>
+			<span class="btm-nav-label">Notifications</span>
+		</button>
+		<button
+			on:click={() => goto('/app/profile')}
+			class:active={$page.url.pathname === '/app/profile'}>
+			<div>📩</div>
+			<span class="btm-nav-label">Profile</span>
+		</button>
+	</div>
+{/if}
